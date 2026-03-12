@@ -15,7 +15,7 @@ export async function GET(_: NextRequest) {
 
   const buffer = exportCustomersToExcel(customers as any);
 
-  return new NextResponse(buffer, {
+   return new NextResponse(new Uint8Array(buffer), {
     headers: {
       'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
       'Content-Disposition': 'attachment; filename="clientes.xlsx"',
