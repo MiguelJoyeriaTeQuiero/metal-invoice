@@ -13,7 +13,7 @@ export function StatsCards({ stats }: { stats: StatCard[] }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
       {stats.map(({ label, value, sub, icon: Icon, color }) => (
-        <div key={label} className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
+        <div key={label} className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-5">
           <div className="flex items-start justify-between">
             <div>
               <p className="text-xs font-medium text-slate-500 uppercase tracking-wide">{label}</p>

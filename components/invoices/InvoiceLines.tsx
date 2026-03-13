@@ -32,7 +32,7 @@ export function InvoiceLines({ lines, onChange }: { lines: InvoiceLineFormData[]
       {lines.map((line, i) => {
         const { igicAmount, lineTotal } = calculateLineTotal(line);
         return (
-          <div key={i} className="border border-slate-200 rounded-xl p-4 bg-slate-50/50">
+          <div key={i} className="border border-slate-200 rounded-xl p-3 sm:p-4 bg-slate-50/50">
             <div className="flex items-start justify-between mb-3">
               <span className="text-xs font-semibold text-slate-500 uppercase">Línea {i + 1}</span>
               <button type="button" onClick={() => onChange(lines.filter((_, idx) => idx !== i))} className="text-slate-400 hover:text-red-500 transition-colors">
@@ -65,7 +65,7 @@ export function InvoiceLines({ lines, onChange }: { lines: InvoiceLineFormData[]
               <div><label className={labelCls}>Descuento (%)</label>
                 <input type="number" step="0.01" min="0" max="100" value={line.discount} onChange={(e) => updateLine(i, 'discount', parseFloat(e.target.value))} className={inputCls} /></div>
             </div>
-            <div className="flex items-center justify-end gap-6 mt-3 pt-3 border-t border-slate-200 text-sm">
+            <div className="flex flex-wrap items-center justify-end gap-3 sm:gap-6 mt-3 pt-3 border-t border-slate-200 text-sm">
               <span className="text-slate-500">IGIC ({(line.igicRate * 100).toFixed(0)}%): {formatCurrency(igicAmount)}</span>
               <span className="font-semibold text-slate-800">Total línea: {formatCurrency(lineTotal)}</span>
             </div>

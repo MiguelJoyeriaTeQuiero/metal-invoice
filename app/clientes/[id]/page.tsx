@@ -35,7 +35,7 @@ export default async function ClienteDetailPage({ params }: { params: { id: stri
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-      <main className="flex-1 md:ml-64 p-6 lg:p-8">
+      <main className="flex-1 md:ml-64 p-4 pt-16 md:p-6 lg:p-8">
         <PageHeader title={customer.name} subtitle={`CIF/NIF: ${customer.taxId}`}
           actions={
             <Link href={`/clientes/${customer.id}/editar`} className="flex items-center gap-2 px-4 py-2 border border-slate-200 text-slate-700 rounded-lg text-sm hover:bg-slate-50 transition-colors">
@@ -91,14 +91,14 @@ export default async function ClienteDetailPage({ params }: { params: { id: stri
                 <div className="divide-y divide-slate-50">
                   {customer.invoices.map((inv) => (
                     <Link key={inv.id} href={`/facturas/${inv.id}`}
-                      className="flex items-center justify-between px-6 py-3.5 hover:bg-slate-50 transition-colors">
-                      <div className="flex items-center gap-3">
-                        <span className="font-mono text-sm font-medium text-slate-700">{inv.number}</span>
-                        <span className="text-xs text-slate-400">{new Date(inv.issueDate).toLocaleDateString('es-ES')}</span>
+                      className="flex items-center justify-between px-4 sm:px-6 py-3.5 hover:bg-slate-50 transition-colors gap-2">
+                      <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                        <span className="font-mono text-xs sm:text-sm font-medium text-slate-700 flex-shrink-0">{inv.number}</span>
+                        <span className="text-xs text-slate-400 hidden xs:block sm:block">{new Date(inv.issueDate).toLocaleDateString('es-ES')}</span>
                       </div>
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
                         <StatusBadge status={inv.status as any} />
-                        <span className="text-sm font-semibold text-slate-800">{formatCurrency(Number(inv.total))}</span>
+                        <span className="text-sm font-semibold text-slate-800 whitespace-nowrap">{formatCurrency(Number(inv.total))}</span>
                       </div>
                     </Link>
                   ))}

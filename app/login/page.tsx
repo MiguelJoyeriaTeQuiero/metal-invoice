@@ -23,7 +23,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0f2747] to-[#1d4f91]">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0f2747] to-[#1d4f91] px-4 py-8">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/10 backdrop-blur mb-4">
@@ -32,7 +32,7 @@ export default function LoginPage() {
           <h1 className="text-3xl font-bold text-white">MetalFactura</h1>
           <p className="text-blue-200 mt-1 text-sm">Sistema de Facturación</p>
         </div>
-        <div className="bg-white rounded-2xl shadow-2xl p-8">
+        <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8">
           <h2 className="text-xl font-semibold text-slate-800 mb-6">Iniciar sesión</h2>
           {error && (
             <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm">{error}</div>

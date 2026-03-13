@@ -25,8 +25,8 @@ export function CustomerTable() {
 
   return (
     <div className="bg-white rounded-2xl border border-slate-100 shadow-sm">
-      <div className="px-6 py-4 border-b border-slate-100">
-        <div className="relative max-w-xs">
+      <div className="px-4 sm:px-6 py-4 border-b border-slate-100">
+        <div className="relative w-full sm:max-w-xs">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4" />
           <input value={search} onChange={(e) => setSearch(e.target.value)}
             placeholder="Buscar por nombre, CIF o ciudad..."

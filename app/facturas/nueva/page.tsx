@@ -12,7 +12,7 @@ export default async function NuevaFacturaPage({ searchParams }: { searchParams:
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-      <main className="flex-1 md:ml-64 p-6 lg:p-8 max-w-5xl">
+      <main className="flex-1 md:ml-64 p-4 pt-16 md:p-6 lg:p-8 max-w-5xl">
         <PageHeader title="Nueva factura" subtitle="Completa los datos para generar la factura" />
         <InvoiceForm prefill={searchParams.customerId ? { customerId: searchParams.customerId } : undefined} />
       </main>

@@ -124,3 +124,78 @@ enum Metal {
   GOLD
   SILVER
 }
+
+model Supplier {
+  id               String            @id @default(cuid())
+  name             String
+  taxId            String            @unique
+  address          String
+  postalCode       String
+  city             String
+  province         String
+  country          String            @default("España")
+  phone            String?
+  email            String?
+  notes            String?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  purchaseInvoices PurchaseInvoice[]
+
+  @@index([name])
+  @@index([taxId])
+}
+
+model PurchaseInvoice {
+  id            String                @id @default(cuid())
+  number        String                @unique
+  status        PurchaseStatus        @default(PENDING)
+  paymentMethod PaymentMethod         @default(TRANSFER)
+  issueDate     DateTime              @default(now())
+  supplierId    String
+  supplier      Supplier              @relation(fields: [supplierId], references: [id])
+  lines         PurchaseInvoiceLine[]
+  subtotal      Decimal               @default(0) @db.Decimal(12, 2)
+  totalDiscount Decimal               @default(0) @db.Decimal(12, 2)
+  totalIgic     Decimal               @default(0) @db.Decimal(12, 2)
+  total         Decimal               @default(0) @db.Decimal(12, 2)
+  iban          String?
+  observations  String?
+  internalNotes String?
+  createdAt     DateTime              @default(now())
+  updatedAt     DateTime              @updatedAt
+
+  @@index([supplierId])
+  @@index([status])
+  @@index([issueDate])
+  @@index([number])
+}
+
+model PurchaseInvoiceLine {
+  id                String          @id @default(cuid())
+  purchaseInvoiceId String
+  purchaseInvoice   PurchaseInvoice @relation(fields: [purchaseInvoiceId], references: [id], onDelete: Cascade)
+  lineOrder         Int             @default(0)
+  itemType          ItemType
+  metal             Metal
+  product           String
+  description       String?
+  serialNumber      String?
+  weightGrams       Decimal         @db.Decimal(10, 4)
+  purity            Decimal         @db.Decimal(5, 4)
+  quantity          Decimal         @db.Decimal(10, 4)
+  unitPrice         Decimal         @db.Decimal(12, 2)
+  discount          Decimal         @default(0) @db.Decimal(5, 2)
+  igicRate          Decimal         @default(0) @db.Decimal(5, 4)
+  igicAmount        Decimal         @default(0) @db.Decimal(12, 2)
+  lineTotal         Decimal         @default(0) @db.Decimal(12, 2)
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  @@index([purchaseInvoiceId])
+}
+
+enum PurchaseStatus {
+  PENDING
+  PAID
+  VOIDED
+}

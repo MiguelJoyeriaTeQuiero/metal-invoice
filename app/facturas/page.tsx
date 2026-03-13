@@ -14,7 +14,7 @@ export default async function FacturasPage() {
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-      <main className="flex-1 md:ml-64 p-6 lg:p-8">
+      <main className="flex-1 md:ml-64 p-4 pt-16 md:p-6 lg:p-8">
         <PageHeader title="Facturas" subtitle="Gestión de facturas y rectificativas"
           actions={<>
             <a href="/api/export/invoices" className="flex items-center gap-2 px-4 py-2 border border-slate-200 text-slate-700 rounded-lg text-sm hover:bg-slate-50 transition-colors">

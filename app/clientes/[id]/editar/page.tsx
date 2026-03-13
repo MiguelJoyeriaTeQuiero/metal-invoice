@@ -16,7 +16,7 @@ export default async function EditarClientePage({ params }: { params: { id: stri
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-      <main className="flex-1 md:ml-64 p-6 lg:p-8 max-w-4xl">
+      <main className="flex-1 md:ml-64 p-4 pt-16 md:p-6 lg:p-8 max-w-4xl">
         <PageHeader title="Editar cliente" subtitle={customer.name} />
         <CustomerForm initial={{
           id: customer.id, name: customer.name, taxId: customer.taxId,

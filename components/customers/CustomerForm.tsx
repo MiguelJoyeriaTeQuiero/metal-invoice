@@ -54,7 +54,7 @@ export function CustomerForm({ initial }: { initial?: Partial<CustomerFormData> 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {error && <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl text-sm">{error}</div>}
-      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
+      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-6">
         <h2 className="font-semibold text-slate-800 mb-4">Datos del cliente</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Field label="Nombre / Razón Social *"><input value={form.name} onChange={(e) => update('name', e.target.value)} className={inputCls} required /></Field>
@@ -69,7 +69,7 @@ export function CustomerForm({ initial }: { initial?: Partial<CustomerFormData> 
           <Field label="Notas internas" className="md:col-span-2"><textarea value={form.notes ?? ''} onChange={(e) => update('notes', e.target.value)} className={`${inputCls} h-20 resize-none`} /></Field>
         </div>
       </div>
-      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
+      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-semibold text-slate-800">Contactos <span className="text-slate-400 font-normal text-sm">(máx. 3)</span></h2>
           {form.contacts.length < 3 && (
@@ -97,9 +97,9 @@ export function CustomerForm({ initial }: { initial?: Partial<CustomerFormData> 
           ))}
         </div>
       </div>
-      <div className="flex items-center justify-end gap-3">
-        <button type="button" onClick={() => router.back()} className="px-5 py-2.5 border border-slate-200 text-slate-700 rounded-xl text-sm hover:bg-slate-50 transition-colors">Cancelar</button>
-        <button type="submit" disabled={loading} className="flex items-center gap-2 px-5 py-2.5 bg-[#0f2747] text-white rounded-xl text-sm hover:bg-[#1d4f91] transition-colors disabled:opacity-50">
+      <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3">
+        <button type="button" onClick={() => router.back()} className="w-full sm:w-auto px-5 py-2.5 border border-slate-200 text-slate-700 rounded-xl text-sm hover:bg-slate-50 transition-colors text-center">Cancelar</button>
+        <button type="submit" disabled={loading} className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 bg-[#0f2747] text-white rounded-xl text-sm hover:bg-[#1d4f91] transition-colors disabled:opacity-50">
           {loading && <Loader2 className="w-4 h-4 animate-spin" />}
           {isEdit ? 'Guardar cambios' : 'Crear cliente'}
         </button>

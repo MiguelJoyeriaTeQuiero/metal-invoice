@@ -28,14 +28,14 @@ export default async function InvoiceDetailPage({ params }: { params: { id: stri
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-      <main className="flex-1 md:ml-64 p-6 lg:p-8">
+      <main className="flex-1 md:ml-64 p-4 pt-16 md:p-6 lg:p-8">
         <PageHeader
           title={invoice.number}
           subtitle={invoice.type === 'RECTIFICATIVE' ? 'Factura Rectificativa' : 'Factura'}
           actions={<InvoiceActions invoice={invoice as any} />} />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 space-y-6">
-            <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
+            <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-6">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                 <div><p className="text-slate-400 text-xs mb-1">Estado</p><StatusBadge status={invoice.status as any} /></div>
                 <div><p className="text-slate-400 text-xs mb-1">Fecha emisión</p><p className="font-medium">{new Date(invoice.issueDate).toLocaleDateString('es-ES')}</p></div>
@@ -45,7 +45,7 @@ export default async function InvoiceDetailPage({ params }: { params: { id: stri
               {invoice.iban && <div className="mt-4 pt-4 border-t border-slate-100"><p className="text-slate-400 text-xs mb-1">IBAN</p><p className="font-mono text-sm">{invoice.iban}</p></div>}
             </div>
             <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
-              <div className="px-6 py-4 border-b border-slate-100"><h2 className="font-semibold text-slate-800">Líneas de factura</h2></div>
+              <div className="px-4 sm:px-6 py-4 border-b border-slate-100"><h2 className="font-semibold text-slate-800">Líneas de factura</h2></div>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
@@ -80,8 +80,8 @@ export default async function InvoiceDetailPage({ params }: { params: { id: stri
                   </tbody>
                 </table>
               </div>
-              <div className="px-6 py-4 border-t border-slate-100 flex justify-end">
-                <div className="w-64 space-y-1.5 text-sm">
+              <div className="px-4 sm:px-6 py-4 border-t border-slate-100 flex justify-end">
+                <div className="w-full sm:w-64 space-y-1.5 text-sm">
                   <div className="flex justify-between text-slate-600"><span>Subtotal</span><span>{formatCurrency(Number(invoice.subtotal))}</span></div>
                   {Number(invoice.totalDiscount) > 0 && <div className="flex justify-between text-slate-600"><span>Descuentos</span><span className="text-red-600">- {formatCurrency(Number(invoice.totalDiscount))}</span></div>}
                   {Number(invoice.totalIgic) > 0 && <div className="flex justify-between text-slate-600"><span>IGIC</span><span>{formatCurrency(Number(invoice.totalIgic))}</span></div>}

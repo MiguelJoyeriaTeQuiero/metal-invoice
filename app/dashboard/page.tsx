@@ -31,25 +31,25 @@ export default async function DashboardPage() {
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-      <main className="flex-1 md:ml-64 p-6 lg:p-8">
+      <main className="flex-1 md:ml-64 p-4 pt-16 md:p-6 lg:p-8">
         <PageHeader title="Dashboard" subtitle={`Bienvenido, ${session.user?.name ?? 'Admin'}`} />
         <StatsCards stats={stats} />
         <div className="mt-8 bg-white rounded-2xl border border-slate-100 shadow-sm">
-          <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+          <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-slate-100">
             <h2 className="font-semibold text-slate-800">Últimas facturas</h2>
             <Link href="/facturas" className="text-sm text-[#1d4f91] hover:underline font-medium">Ver todas →</Link>
           </div>
           <div className="divide-y divide-slate-50">
             {recentInvoices.map((inv) => (
               <Link key={inv.id} href={`/facturas/${inv.id}`}
-                className="flex items-center justify-between px-6 py-3.5 hover:bg-slate-50 transition-colors">
-                <div className="flex items-center gap-4">
-                  <span className="font-mono text-sm font-medium text-slate-700">{inv.number}</span>
-                  <span className="text-sm text-slate-500">{inv.customer.name}</span>
+                className="flex items-center justify-between px-4 sm:px-6 py-3.5 hover:bg-slate-50 transition-colors gap-2">
+                <div className="flex items-center gap-2 sm:gap-4 min-w-0">
+                  <span className="font-mono text-xs sm:text-sm font-medium text-slate-700 flex-shrink-0">{inv.number}</span>
+                  <span className="text-sm text-slate-500 truncate">{inv.customer.name}</span>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
                   <StatusBadge status={inv.status as any} />
-                  <span className="text-sm font-semibold text-slate-800">{formatCurrency(Number(inv.total))}</span>
+                  <span className="text-sm font-semibold text-slate-800 whitespace-nowrap">{formatCurrency(Number(inv.total))}</span>
                 </div>
               </Link>
             ))}

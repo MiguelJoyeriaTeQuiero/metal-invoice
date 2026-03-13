@@ -65,7 +65,7 @@ export function InvoiceForm({ prefill, originalNumber }: { prefill?: Partial<Inv
           ⚠️ Factura rectificativa de <strong>{originalNumber}</strong>. Las líneas han sido copiadas automáticamente.
         </div>
       )}
-      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
+      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-6">
         <h2 className="font-semibold text-slate-800 mb-4">Datos generales</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div><label className={labelCls}>Cliente *</label>
@@ -86,13 +86,13 @@ export function InvoiceForm({ prefill, originalNumber }: { prefill?: Partial<Inv
           )}
         </div>
       </div>
-      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
+      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-6">
         <h2 className="font-semibold text-slate-800 mb-4">Líneas de factura</h2>
         <InvoiceLines lines={form.lines} onChange={(lines) => update('lines', lines)} />
       </div>
-      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
+      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-6">
         <div className="flex justify-end">
-          <div className="w-72 space-y-2">
+          <div className="w-full sm:w-72 space-y-2">
             <div className="flex justify-between text-sm text-slate-600"><span>Subtotal</span><span>{formatCurrency(totals.subtotal)}</span></div>
             {totals.totalDiscount > 0 && <div className="flex justify-between text-sm text-slate-600"><span>Descuentos</span><span className="text-red-600">- {formatCurrency(totals.totalDiscount)}</span></div>}
             {totals.igicBreakdown.map((b) => (
@@ -102,7 +102,7 @@ export function InvoiceForm({ prefill, originalNumber }: { prefill?: Partial<Inv
           </div>
         </div>
       </div>
-      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
+      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-6">
         <h2 className="font-semibold text-slate-800 mb-4">Observaciones</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div><label className={labelCls}>Observaciones (aparecen en PDF)</label>
@@ -111,9 +111,9 @@ export function InvoiceForm({ prefill, originalNumber }: { prefill?: Partial<Inv
             <textarea value={form.internalNotes ?? ''} onChange={(e) => update('internalNotes', e.target.value)} className={`${inputCls} h-24 resize-none`} /></div>
         </div>
       </div>
-      <div className="flex items-center justify-end gap-3">
-        <button type="button" onClick={() => router.back()} className="px-5 py-2.5 border border-slate-200 text-slate-700 rounded-xl text-sm hover:bg-slate-50 transition-colors">Cancelar</button>
-        <button type="submit" disabled={loading} className="flex items-center gap-2 px-5 py-2.5 bg-[#0f2747] text-white rounded-xl text-sm hover:bg-[#1d4f91] transition-colors disabled:opacity-50">
+      <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3">
+        <button type="button" onClick={() => router.back()} className="w-full sm:w-auto px-5 py-2.5 border border-slate-200 text-slate-700 rounded-xl text-sm hover:bg-slate-50 transition-colors text-center">Cancelar</button>
+        <button type="submit" disabled={loading} className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 bg-[#0f2747] text-white rounded-xl text-sm hover:bg-[#1d4f91] transition-colors disabled:opacity-50">
           {loading && <Loader2 className="w-4 h-4 animate-spin" />}
           {isRectificative ? 'Crear rectificativa' : 'Crear factura'}
         </button>

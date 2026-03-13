@@ -40,24 +40,24 @@ export function InvoiceList() {
 
   return (
     <div className="bg-white rounded-2xl border border-slate-100 shadow-sm">
-      <div className="px-6 py-4 border-b border-slate-100 flex flex-wrap gap-3 items-center">
-        <div className="relative">
+      <div className="px-4 sm:px-6 py-4 border-b border-slate-100 flex flex-wrap gap-3 items-center">
+        <div className="relative flex-1 sm:flex-none">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4" />
           <input value={filters.search ?? ''} onChange={(e) => updateFilter('search', e.target.value)}
             placeholder="Buscar número o cliente..."
-            className="pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1d4f91] w-64" />
+            className="pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1d4f91] w-full sm:w-64" />
         </div>
         <select value={filters.status ?? 'ALL'} onChange={(e) => updateFilter('status', e.target.value)}
-          className="px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1d4f91]">
+          className="px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1d4f91] flex-1 sm:flex-none">
           {STATUS_OPTIONS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
         </select>
         <select value={filters.type ?? 'ALL'} onChange={(e) => updateFilter('type', e.target.value)}
-          className="px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1d4f91]">
+          className="px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1d4f91] flex-1 sm:flex-none">
           <option value="ALL">Todos los tipos</option>
           <option value="STANDARD">Facturas</option>
           <option value="RECTIFICATIVE">Rectificativas</option>
         </select>
-        <span className="ml-auto text-xs text-slate-400">{total} resultados</span>
+        <span className="ml-auto text-xs text-slate-400 whitespace-nowrap">{total} resultados</span>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full">
@@ -106,7 +106,7 @@ export function InvoiceList() {
         </table>
       </div>
       {totalPages > 1 && (
-        <div className="flex items-center justify-between px-6 py-4 border-t border-slate-100">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-t border-slate-100">
           <button onClick={() => updateFilter('page', (filters.page ?? 1) - 1)} disabled={(filters.page ?? 1) <= 1}
             className="px-4 py-2 border border-slate-200 rounded-lg text-sm disabled:opacity-40 hover:bg-slate-50 transition-colors">Anterior</button>
           <span className="text-sm text-slate-500">Página {filters.page} de {totalPages}</span>
